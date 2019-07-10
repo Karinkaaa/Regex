@@ -1,7 +1,7 @@
 package main.java.web.birds.processor;
 
 import main.java.web.birds.entities.Bird;
-import main.java.web.components.BirdStore;
+import main.java.web.components.BirdStoreComponent;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class UserCommandProcessor implements IBirdCreator, IUserCommandProcessor, IInfiniteLoopProcessor {
 
-    private BirdStore birdStore = BirdStore.getInstance();
+    private BirdStoreComponent birdStore = BirdStoreComponent.getInstance();
 
     @Override
     public Bird createBird(Scanner userInputReader) {

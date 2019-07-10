@@ -16,31 +16,37 @@ import java.util.Map;
  */
 
 @Component
-public class BirdStore extends AbstractBirdStore {
+public class BirdStoreComponent extends AbstractBirdStore {
 
-    private static BirdStore instance;
+    private static BirdStoreComponent instance;
     private Map<String, Bird> mapStorage = new HashMap<>();
 
-    private BirdStore() {
+    private BirdStoreComponent() {
     }
 
-    public static BirdStore getInstance() {
-        return instance == null ? new BirdStore() : instance;
+    public static BirdStoreComponent getInstance() {
+        return instance == null ? new BirdStoreComponent() : instance;
     }
 
     @Override
-    public void addBird(Bird bird) {
+    public Bird addBird(Bird bird) {
 
-        if (mapStorage.containsKey(bird.getName()))
+        if (mapStorage.containsKey(bird.getName())) {
             System.out.println("Bird with name " + bird.getName() + " already exists!");
-        else
+        } else {
             mapStorage.put(bird.getName(), bird);
+        }
+        return bird;
     }
 
     @Override
-    public void deleteBird(String name) {
-        if (mapStorage.get(name) != null)
+    public Bird deleteBird(String name) {
+
+        Bird bird = mapStorage.get(name);
+        if (bird != null)
             mapStorage.remove(name);
+
+        return bird;
     }
 
     @Override

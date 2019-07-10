@@ -1,6 +1,7 @@
 package test.java.web.test;
 
-import main.java.web.components.BirdStore;
+import main.java.web.birds.entities.Bird;
+import main.java.web.components.BirdStoreComponent;
 import org.junit.Test;
 
 public class BirdControllerTest {
@@ -8,7 +9,10 @@ public class BirdControllerTest {
     @Test
     public void addBird() {
 
-        BirdStore birdStore = BirdStore.getInstance();
+        BirdStoreComponent birdStore = BirdStoreComponent.getInstance();
+        Bird expectedAddResult = null;
+        Bird bird = new Bird("bird", "forest", 1.2);
+        Bird addResult = birdStore.addBird(bird);
 
     }
 }
