@@ -8,7 +8,6 @@ public class OperationControllerTest {
 
     @Test
     public void testAdd() {
-
         OperationComponent oc = new OperationComponent();
         int param1 = 1;
         int param2 = 2;
