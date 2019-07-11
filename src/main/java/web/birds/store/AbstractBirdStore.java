@@ -11,10 +11,10 @@ public abstract class AbstractBirdStore {
      * @param bird объект который должен быть добьавлен.
      *          <p>
      *          Если объект с тактм именем уже существует - вывести Bird With name .... already exists.
-     * @return
      */
-    public abstract Bird addBird(Bird bird);
-    public abstract Bird deleteBird(String name);
+    public abstract void addBird(Bird bird);
+    public abstract void deleteBird(String name);
+    public abstract void updateBird(String name, String newName);
 
     /**
      * Вернуть объект у которого name = nameToSearch

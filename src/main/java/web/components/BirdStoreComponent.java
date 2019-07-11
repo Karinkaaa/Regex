@@ -29,24 +29,24 @@ public class BirdStoreComponent extends AbstractBirdStore {
     }
 
     @Override
-    public Bird addBird(Bird bird) {
+    public void addBird(Bird bird) {
 
-        if (mapStorage.containsKey(bird.getName())) {
+        if (mapStorage.containsKey(bird.getName()))
             System.out.println("Bird with name " + bird.getName() + " already exists!");
-        } else {
+        else
             mapStorage.put(bird.getName(), bird);
-        }
-        return bird;
     }
 
     @Override
-    public Bird deleteBird(String name) {
-
-        Bird bird = mapStorage.get(name);
-        if (bird != null)
+    public void deleteBird(String name) {
+        if (mapStorage.get(name) != null)
             mapStorage.remove(name);
+    }
 
-        return bird;
+    @Override
+    public void updateBird(String name, String newName) {
+        Bird bird = mapStorage.get(name);
+        bird.setName(newName);
     }
 
     @Override
