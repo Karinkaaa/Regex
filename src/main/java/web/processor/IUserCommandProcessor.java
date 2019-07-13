@@ -1,4 +1,4 @@
-package main.java.web.birds.processor;
+package main.java.web.processor;
 
 import java.util.Scanner;
 

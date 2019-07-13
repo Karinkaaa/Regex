@@ -1,6 +1,7 @@
-package main.java.web.birds.processor;
+package main.java.web.processor;
 
-import main.java.web.birds.entities.Bird;
+import main.java.birds.entities.Bird;
+
 import java.util.Scanner;
 
 public interface IBirdCreator {
