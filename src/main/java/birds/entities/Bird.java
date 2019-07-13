@@ -1,4 +1,4 @@
-package main.java.web.birds.entities;
+package main.java.birds.entities;
 
 /**
  * Bird.
@@ -41,5 +41,18 @@ public class Bird {
     @Override
     public String toString() {
         return "\n\nName: " + getName() + "\nLiving area: " + getLivingArea() + "\nSize: " + getSize();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj instanceof Bird) {
+
+            Bird otherBird = (Bird) obj;
+            return this.getName().equals(otherBird.getName()) &&
+                    this.getLivingArea().equals(otherBird.getLivingArea()) &&
+                    this.getSize() == (otherBird.getSize());
+        }
+        return false;
     }
 }
