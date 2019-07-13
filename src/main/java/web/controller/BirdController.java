@@ -31,26 +31,38 @@ public class BirdController {
     @ResponseBody
     public String deleteBird(String name) {
 
-        birdStore.deleteBird(name);
+        Bird bird = birdStore.deleteBird(name);
         logger.info("Deleting bird...\n");
-        return name;
+
+        if (bird != null)
+            return bird.toString();
+
+        return "Bird with name <" + name + "> not found!";
     }
 
     @RequestMapping(value = "update-bird", method = RequestMethod.POST)
     @ResponseBody
     public String updateBird(String name, String newName) {
 
-        birdStore.updateBird(name, newName);
+        Bird bird = birdStore.updateBird(name, newName);
         logger.info("Updating bird...\n");
-        return newName;
+
+        if (bird != null)
+            return bird.toString();
+
+        return "Bird with name <" + name + "> not found!";
     }
 
     @RequestMapping(value = "find-bird", method = RequestMethod.GET)
     @ResponseBody
     public String findBird(String name) {
 
-        birdStore.searchByName(name);
+        Bird bird = birdStore.searchByName(name);
         logger.info("Finding bird...\n");
-        return name;
+
+        if (bird != null)
+            return bird.toString();
+
+        return "Bird with name <" + name + "> not found!";
     }
 }
