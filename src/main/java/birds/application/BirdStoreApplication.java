@@ -1,7 +1,7 @@
-package main.java.web.birds.application;
+package main.java.birds.application;
 
-import main.java.web.birds.processor.IInfiniteLoopProcessor;
-import main.java.web.birds.processor.UserCommandProcessor;
+import main.java.web.processor.IInfiniteLoopProcessor;
+import main.java.web.processor.UserCommandProcessor;
 
 public class BirdStoreApplication {
 
