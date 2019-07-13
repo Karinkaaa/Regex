@@ -1,7 +1,6 @@
-package main.java.web.birds.store;
+package main.java.birds.abstract_store;
 
-import main.java.web.birds.entities.Bird;
-
+import main.java.birds.entities.Bird;
 import java.util.List;
 
 public abstract class AbstractBirdStore {
@@ -11,10 +10,11 @@ public abstract class AbstractBirdStore {
      * @param bird объект который должен быть добьавлен.
      *          <p>
      *          Если объект с тактм именем уже существует - вывести Bird With name .... already exists.
+     * @return
      */
-    public abstract void addBird(Bird bird);
-    public abstract void deleteBird(String name);
-    public abstract void updateBird(String name, String newName);
+    public abstract Bird addBird(Bird bird);
+    public abstract Bird deleteBird(String name);
+    public abstract Bird updateBird(String name, String newName);
 
     /**
      * Вернуть объект у которого name = nameToSearch
