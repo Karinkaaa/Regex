@@ -1,7 +1,7 @@
 package main.java.web.components;
 
-import main.java.web.birds.entities.Bird;
-import main.java.web.birds.store.AbstractBirdStore;
+import main.java.birds.entities.Bird;
+import main.java.birds.abstract_store.AbstractBirdStore;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,35 +18,36 @@ import java.util.Map;
 @Component
 public class BirdStoreComponent extends AbstractBirdStore {
 
-    private static BirdStoreComponent instance;
     private Map<String, Bird> mapStorage = new HashMap<>();
 
-    private BirdStoreComponent() {
-    }
-
-    public static BirdStoreComponent getInstance() {
-        return instance == null ? new BirdStoreComponent() : instance;
+    public BirdStoreComponent() {
     }
 
     @Override
-    public void addBird(Bird bird) {
+    public Bird addBird(Bird bird) {
 
-        if (mapStorage.containsKey(bird.getName()))
-            System.out.println("Bird with name " + bird.getName() + " already exists!");
-        else
+        if (!mapStorage.containsKey(bird.getName())) {
             mapStorage.put(bird.getName(), bird);
+            return bird;
+        }
+        return null;
     }
 
     @Override
-    public void deleteBird(String name) {
-        if (mapStorage.get(name) != null)
-            mapStorage.remove(name);
+    public Bird deleteBird(String name) {
+        return mapStorage.remove(name);
     }
 
     @Override
-    public void updateBird(String name, String newName) {
+    public Bird updateBird(String name, String newName) {
+
         Bird bird = mapStorage.get(name);
-        bird.setName(newName);
+        if (bird != null) {
+            bird.setName(newName);
+            mapStorage.remove(name);
+            mapStorage.put(newName, bird);
+        }
+        return bird;
     }
 
     @Override
