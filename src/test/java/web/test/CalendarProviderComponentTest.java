@@ -1,9 +1,10 @@
-package main.java.web.components;
+package test.java.web.test;
 
 import main.java.date_time.entities.Day;
 import main.java.date_time.entities.Month;
 import main.java.date_time.exceptions.InvalidDayInYearException;
 import main.java.date_time.exceptions.InvalidFiscalDateFormatException;
+import main.java.web.components.CalendarProviderComponent;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
