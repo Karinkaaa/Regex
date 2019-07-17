@@ -20,7 +20,7 @@ public class BirdController {
     private Logger logger = LoggerFactory.getLogger(BirdController.class);
     private final BirdStoreComponent birdStore = SingleBirdStore.getInstance();
 
-    @RequestMapping(value = "add-bird", method = RequestMethod.PUT)
+    @RequestMapping(value = "add-bird", method = RequestMethod.GET)
     @ResponseBody
     public String addBird(String name, String livingArea, double size)
             throws ExistingIdException, InvalidDataException {
