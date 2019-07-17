@@ -12,9 +12,9 @@ public class ValidationInputParameters implements IValidationInputParameters {
         for (int i = 0; i < param.length(); i++) {
 
             char ch = param.charAt(i);
-            if (!Character.isLetter(ch) || !(ch == ' ')) {
+
+            if (!Character.isLetter(ch) && !Character.isWhitespace(ch))
                 throw new InvalidDataException("Input parameter is not valid!");
-            }
         }
         return true;
     }
@@ -23,6 +23,6 @@ public class ValidationInputParameters implements IValidationInputParameters {
     public boolean isValidSize(double param) throws InvalidDataException {
 
         if (param > 0.0) return true;
-        throw new InvalidDataException("Input parameter is not valid!");
+        throw new InvalidDataException("Input parameter is not valid: param <= 0");
     }
 }
