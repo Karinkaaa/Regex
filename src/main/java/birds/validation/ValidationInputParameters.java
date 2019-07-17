@@ -1,11 +1,11 @@
 package main.java.birds.validation;
 
+import main.java.birds.entities.Bird;
 import main.java.birds.my_exceptions.InvalidDataException;
 
-public class ValidationInputParameters implements IValidationInputParameters {
+public class ValidationInputParameters implements IValidationInputParameters<Bird> {
 
-    @Override
-    public boolean isValidStringParam(String param, int maxLength) throws InvalidDataException {
+    private boolean isValidStringParam(String param, int maxLength) throws InvalidDataException {
 
         if (param.length() > maxLength) return false;
 
@@ -19,10 +19,18 @@ public class ValidationInputParameters implements IValidationInputParameters {
         return true;
     }
 
-    @Override
-    public boolean isValidSize(double param) throws InvalidDataException {
+
+    private boolean isValidSize(double param) throws InvalidDataException {
 
         if (param > 0.0) return true;
         throw new InvalidDataException("Input parameter is not valid: param <= 0");
+    }
+
+    @Override
+    public boolean isValid(Bird bird) throws InvalidDataException {
+
+        return isValidStringParam(bird.getName(), 100) &&
+                isValidStringParam(bird.getLivingArea(), 50) &&
+                isValidSize(bird.getSize());
     }
 }
