@@ -3,6 +3,7 @@ package main.java.web.controller;
 import main.java.birds.entities.Bird;
 import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
 import main.java.birds.my_exceptions.ExistingIdException;
+import main.java.birds.my_exceptions.InvalidDataException;
 import main.java.web.components.BirdStoreComponent;
 import main.java.web.components.SingleBirdStore;
 import org.slf4j.Logger;
@@ -21,7 +22,8 @@ public class BirdController {
 
     @RequestMapping(value = "add-bird", method = RequestMethod.PUT)
     @ResponseBody
-    public String addBird(String name, String livingArea, double size) throws ExistingIdException {
+    public String addBird(String name, String livingArea, double size)
+            throws ExistingIdException, InvalidDataException {
 
         Bird bird = new Bird(name, livingArea, size);
         birdStore.addBird(bird);
