@@ -1,6 +1,8 @@
 package main.java.birds.abstract_store;
 
 import main.java.birds.entities.Bird;
+import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
+
 import java.util.List;
 
 public abstract class AbstractBirdStore {
@@ -12,8 +14,8 @@ public abstract class AbstractBirdStore {
      *          Если объект с тактм именем уже существует - вывести Bird With name .... already exists.
      * @return
      */
-    public abstract Bird addBird(Bird bird);
-    public abstract Bird deleteBird(String name);
+    public abstract Bird addBird(Bird bird) throws Exception;
+    public abstract Bird deleteBird(String name) throws DeletingNonexistentObjectException;
     public abstract Bird updateBird(String name, String newName);
 
     /**
