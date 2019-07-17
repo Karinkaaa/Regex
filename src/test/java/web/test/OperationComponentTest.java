@@ -1,13 +1,8 @@
 package test.java.web.test;
 
-import main.java.web.components.DataStore;
-import main.java.web.components.OperationComponent;
-import main.java.web.components.RandomNumberComponent;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import static org.junit.Assert.*;
 
 public class OperationComponentTest {
 
