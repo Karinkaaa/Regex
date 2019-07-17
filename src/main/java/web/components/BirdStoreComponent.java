@@ -2,6 +2,8 @@ package main.java.web.components;
 
 import main.java.birds.entities.Bird;
 import main.java.birds.abstract_store.AbstractBirdStore;
+import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
+import main.java.birds.my_exceptions.ExistingIdException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,18 +26,22 @@ public class BirdStoreComponent extends AbstractBirdStore {
     }
 
     @Override
-    public Bird addBird(Bird bird) {
+    public Bird addBird(Bird bird) throws ExistingIdException {
 
         if (!mapStorage.containsKey(bird.getName())) {
             mapStorage.put(bird.getName(), bird);
             return bird;
         }
-        return null;
+        throw new ExistingIdException("Bird with key <" + bird.getName() + "> already is exists!");
     }
 
     @Override
-    public Bird deleteBird(String name) {
-        return mapStorage.remove(name);
+    public Bird deleteBird(String name) throws DeletingNonexistentObjectException {
+
+        if (mapStorage.containsKey(name)) {
+            return mapStorage.remove(name);
+        }
+        throw new DeletingNonexistentObjectException("Deletion of a non-existent object is impossible!");
     }
 
     @Override
