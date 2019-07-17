@@ -2,6 +2,7 @@ package main.java.web.processor;
 
 import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
 import main.java.birds.my_exceptions.ExistingIdException;
+import main.java.birds.my_exceptions.InvalidDataException;
 
 import java.util.Scanner;
 
@@ -33,5 +34,5 @@ public interface IUserCommandProcessor {
      * @param command         команда которую ввел пользователь
      * @param userInputReader объект Scanner который будет использоватеься для чтения дополнительных параметров.
      */
-    void processUserCommand(String command, Scanner userInputReader) throws ExistingIdException, DeletingNonexistentObjectException;
+    void processUserCommand(String command, Scanner userInputReader) throws ExistingIdException, DeletingNonexistentObjectException, InvalidDataException;
 }

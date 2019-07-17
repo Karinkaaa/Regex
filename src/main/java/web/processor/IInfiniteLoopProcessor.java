@@ -2,6 +2,7 @@ package main.java.web.processor;
 
 import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
 import main.java.birds.my_exceptions.ExistingIdException;
+import main.java.birds.my_exceptions.InvalidDataException;
 
 public interface IInfiniteLoopProcessor {
     /**
@@ -14,5 +15,5 @@ public interface IInfiniteLoopProcessor {
      * exit - terminate application
      * 2) пользователь вводит комманду.
      */
-    void processInLoop() throws ExistingIdException, DeletingNonexistentObjectException;
+    void processInLoop() throws ExistingIdException, DeletingNonexistentObjectException, InvalidDataException;
 }
