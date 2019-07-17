@@ -3,6 +3,7 @@ package test.java.web.test;
 import main.java.birds.entities.Bird;
 import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
 import main.java.birds.my_exceptions.ExistingIdException;
+import main.java.birds.my_exceptions.InvalidDataException;
 import main.java.web.components.BirdStoreComponent;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,7 +22,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void addBird() throws ExistingIdException {
+    public void addBird() throws ExistingIdException, InvalidDataException {
 
         Bird resultBird = store.addBird(bird);
         Assert.assertEquals(bird, resultBird);
@@ -34,7 +35,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void deleteBird() throws ExistingIdException, DeletingNonexistentObjectException {
+    public void deleteBird() throws ExistingIdException, DeletingNonexistentObjectException, InvalidDataException {
 
         store.addBird(bird);
         Assert.assertEquals(bird, store.deleteBird(bird.getName()));
@@ -43,7 +44,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void updateBird() throws ExistingIdException {
+    public void updateBird() throws ExistingIdException, InvalidDataException {
 
         store.addBird(bird);
 
@@ -61,7 +62,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void searchByName() throws ExistingIdException {
+    public void searchByName() throws ExistingIdException, InvalidDataException {
 
         store.addBird(bird);
 
@@ -70,5 +71,17 @@ public class BirdStoreComponentTest {
 
         name = "titmouse";
         Assert.assertNull(store.searchByName(name));
+    }
+
+    @Test
+    public void searchByLivingArea() throws InvalidDataException, ExistingIdException {
+
+        store.addBird(bird);
+
+        String livingArea = "forest";
+        Assert.assertEquals(livingArea, store.searchByLivingArea(livingArea));
+
+        livingArea = "river";
+        Assert.assertNull(store.searchByLivingArea(livingArea));
     }
 }
