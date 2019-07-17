@@ -1,6 +1,7 @@
 package main.java.web.processor;
 
 import main.java.birds.entities.Bird;
+import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
 import main.java.birds.my_exceptions.ExistingIdException;
 import main.java.web.components.BirdStoreComponent;
 import main.java.web.components.SingleBirdStore;
@@ -27,13 +28,14 @@ public class UserCommandProcessor implements IBirdCreator, IUserCommandProcessor
     }
 
     @Override
-    public void processInLoop() throws ExistingIdException {
+    public void processInLoop() throws ExistingIdException, DeletingNonexistentObjectException {
 
         while (true) {
             System.out.println("\n\nPlease, enter command:\n" +
                     "a - add new Bird\n" +
                     "s - search bird by name\n" +
                     "l - search bird by living area\n" +
+                    "d - delete bird by name\n" +
                     "exit - terminate application");
 
             Scanner in = new Scanner(System.in);
@@ -43,7 +45,8 @@ public class UserCommandProcessor implements IBirdCreator, IUserCommandProcessor
     }
 
     @Override
-    public void processUserCommand(String command, Scanner userInputReader) throws ExistingIdException {
+    public void processUserCommand(String command, Scanner userInputReader)
+            throws ExistingIdException, DeletingNonexistentObjectException {
 
         Bird bird;
         switch (command) {
@@ -61,6 +64,8 @@ public class UserCommandProcessor implements IBirdCreator, IUserCommandProcessor
                 List listBirds = birdStore.searchByLivingArea(livingArea);
                 showListOfBirds(listBirds);
                 break;
+            case "d":
+                birdStore.deleteBird(createName(userInputReader));
             case "exit":
                 System.exit(0);
             default:
