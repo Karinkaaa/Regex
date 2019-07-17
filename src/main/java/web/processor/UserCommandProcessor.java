@@ -1,6 +1,7 @@
 package main.java.web.processor;
 
 import main.java.birds.entities.Bird;
+import main.java.birds.my_exceptions.ExistingIdException;
 import main.java.web.components.BirdStoreComponent;
 import main.java.web.components.SingleBirdStore;
 
@@ -26,7 +27,7 @@ public class UserCommandProcessor implements IBirdCreator, IUserCommandProcessor
     }
 
     @Override
-    public void processInLoop() {
+    public void processInLoop() throws ExistingIdException {
 
         while (true) {
             System.out.println("\n\nPlease, enter command:\n" +
@@ -42,7 +43,7 @@ public class UserCommandProcessor implements IBirdCreator, IUserCommandProcessor
     }
 
     @Override
-    public void processUserCommand(String command, Scanner userInputReader) {
+    public void processUserCommand(String command, Scanner userInputReader) throws ExistingIdException {
 
         Bird bird;
         switch (command) {

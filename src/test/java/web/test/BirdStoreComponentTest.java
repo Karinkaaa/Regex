@@ -1,6 +1,8 @@
 package test.java.web.test;
 
 import main.java.birds.entities.Bird;
+import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
+import main.java.birds.my_exceptions.ExistingIdException;
 import main.java.web.components.BirdStoreComponent;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +21,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void addBird() {
+    public void addBird() throws ExistingIdException {
 
         Bird resultBird = store.addBird(bird);
         Assert.assertEquals(bird, resultBird);
@@ -32,7 +34,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void deleteBird() {
+    public void deleteBird() throws ExistingIdException, DeletingNonexistentObjectException {
 
         store.addBird(bird);
         Assert.assertEquals(bird, store.deleteBird(bird.getName()));
@@ -41,7 +43,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void updateBird() {
+    public void updateBird() throws ExistingIdException {
 
         store.addBird(bird);
 
@@ -59,7 +61,7 @@ public class BirdStoreComponentTest {
     }
 
     @Test
-    public void searchByName() {
+    public void searchByName() throws ExistingIdException {
 
         store.addBird(bird);
 
