@@ -3,7 +3,7 @@ package main.java.birds.validation;
 import main.java.birds.entities.Bird;
 import main.java.birds.my_exceptions.InvalidDataException;
 
-public class ValidationInputParameters implements IValidationInputParameters<Bird> {
+public class BirdValidator implements IValidationInputParameters<Bird> {
 
     private boolean isValidStringParam(String param, int maxLength) throws InvalidDataException {
 
