@@ -1,5 +1,6 @@
 package main.java.web.processor;
 
+import main.java.birds.my_exceptions.DeletingNonexistentObjectException;
 import main.java.birds.my_exceptions.ExistingIdException;
 
 public interface IInfiniteLoopProcessor {
@@ -13,5 +14,5 @@ public interface IInfiniteLoopProcessor {
      * exit - terminate application
      * 2) пользователь вводит комманду.
      */
-    void processInLoop() throws ExistingIdException;
+    void processInLoop() throws ExistingIdException, DeletingNonexistentObjectException;
 }
