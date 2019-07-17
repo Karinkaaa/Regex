@@ -9,16 +9,22 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class BirdStoreComponentTest {
 
     private BirdStoreComponent store;
     private Bird bird;
+    private Bird invalidBird;
 
     @Before
     public void beforeEachTest() {
 
         store = new BirdStoreComponent();
         bird = new Bird("eagle", "forest", 1.2);
+        invalidBird = new Bird("123", "livingArea", 1);
     }
 
     @Test
@@ -29,9 +35,19 @@ public class BirdStoreComponentTest {
 
         Bird bird2 = store.searchByName(bird.getName());
         Assert.assertEquals(bird, bird2);
+    }
 
-        Bird resultBird2 = store.addBird(bird);
-        Assert.assertNull(resultBird2);
+    @Test(expected = ExistingIdException.class)
+    public void addBirdExistingIdException() throws ExistingIdException, InvalidDataException {
+
+        store.addBird(bird);
+        store.addBird(bird);
+    }
+
+    @Test(expected = InvalidDataException.class)
+    public void addBirdInvalidDataException() throws ExistingIdException, InvalidDataException {
+
+        store.addBird(invalidBird);
     }
 
     @Test
@@ -39,8 +55,13 @@ public class BirdStoreComponentTest {
 
         store.addBird(bird);
         Assert.assertEquals(bird, store.deleteBird(bird.getName()));
+    }
 
-        Assert.assertNull(store.deleteBird(bird.getName()));
+    @Test(expected = DeletingNonexistentObjectException.class)
+    public void deleteBirdDeletingNonexistentObjectException()
+            throws ExistingIdException, DeletingNonexistentObjectException, InvalidDataException {
+
+        store.deleteBird(bird.getName());
     }
 
     @Test
@@ -77,11 +98,13 @@ public class BirdStoreComponentTest {
     public void searchByLivingArea() throws InvalidDataException, ExistingIdException {
 
         store.addBird(bird);
+        List<Bird> expected = new ArrayList<>();
+        expected.add(bird);
 
         String livingArea = "forest";
-        Assert.assertEquals(livingArea, store.searchByLivingArea(livingArea));
+        Assert.assertEquals(expected, store.searchByLivingArea(livingArea));
 
         livingArea = "river";
-        Assert.assertNull(store.searchByLivingArea(livingArea));
+        Assert.assertEquals(Collections.emptyList(), store.searchByLivingArea(livingArea));
     }
 }
