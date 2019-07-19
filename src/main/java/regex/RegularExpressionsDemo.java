@@ -138,12 +138,39 @@ public class RegularExpressionsDemo {
         */
 
         // Совпадения нулевой длины
-
+        /*
         String input = "Java is";
         Pattern pattern = Pattern.compile("\\b\\b");
         Matcher matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
+        */
+
+        // Квантификаторы
+
+        // использование жадного квантификатора:
+        String input = "fox box pox fax";
+        Pattern pattern = Pattern.compile(".*ox");
+        Matcher matcher = pattern.matcher(input);
+
+        whileMatcherFind(input, matcher);
+        System.out.println("---------------------------------------------------");
+
+        // использование ленивого квантификатора:
+        input = "fox box pox fax";
+        pattern = Pattern.compile(".*?ox");
+        matcher = pattern.matcher(input);
+
+        whileMatcherFind(input, matcher);
+        System.out.println("---------------------------------------------------");
+
+        // использование сверхжадного квантификатора:
+        input = "fox box pox fax ox";
+        pattern = Pattern.compile(".*+ox");
+        matcher = pattern.matcher(input);
+
+        whileMatcherFind(input, matcher);
+
 
 
 
