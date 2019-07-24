@@ -47,114 +47,118 @@ public class RegularExpressionsDemo {
         System.out.println(text);
         */
 
+        String input;
+        Pattern pattern;
+        Matcher matcher;
+
         // Простые классы символов
         /*
-        String input = "cave";
-        Pattern pattern = Pattern.compile("[abc]");
-        Matcher matcher = pattern.matcher(input);
+        input = "cave";
+        pattern = Pattern.compile("[abc]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Инвертированные классы символов
         /*
-        String input = "cave";
-        Pattern pattern = Pattern.compile("[^abc]");
-        Matcher matcher = pattern.matcher(input);
+        input = "cave";
+        pattern = Pattern.compile("[^abc]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Диапазонные классы символов
         /*
-        String input = "clown";
-        Pattern pattern = Pattern.compile("[a-n]");
-        Matcher matcher = pattern.matcher(input);
+        input = "clown";
+        pattern = Pattern.compile("[a-n]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Слияние нескольких диапазонов
         /*
-        String input = "clOwn";
-        Pattern pattern = Pattern.compile("[a-mA-P]");
-        Matcher matcher = pattern.matcher(input);
+        input = "clOwn";
+        pattern = Pattern.compile("[a-mA-P]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Объединение классов символов
         /*
-        String input = "clown";
-        Pattern pattern = Pattern.compile("[a-d[m-p]]");
-        Matcher matcher = pattern.matcher(input);
+        input = "clown";
+        pattern = Pattern.compile("[a-d[m-p]]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Пересечение классов символов
         /*
-        String input = "party";
-        Pattern pattern = Pattern.compile("[a-z&&[d-f]]");
-        Matcher matcher = pattern.matcher(input);
+        input = "party";
+        pattern = Pattern.compile("[a-z&&[d-f]]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Вычитание классов символов
         /*
-        String input = "party";
-        Pattern pattern = Pattern.compile("[a-z&&[^m-t]]");
-        Matcher matcher = pattern.matcher(input);
+        input = "party";
+        pattern = Pattern.compile("[a-z&&[^m-t]]");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Предопределенные классы символов
         /*
-        String input = "aZ.8 _";
-        Pattern pattern = Pattern.compile("\\w");
-        Matcher matcher = pattern.matcher(input);
+        input = "aZ.8 _";
+        pattern = Pattern.compile("\\w");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Захватываемые группы
         /*
-        String input = "The Java language language";
-        Pattern pattern = Pattern.compile("(Java( language)\\2)");
-        Matcher matcher = pattern.matcher(input);
+        input = "The Java language language";
+        pattern = Pattern.compile("(Java( language)\\2)");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
+
 
         // Граничные сопоставители
         /*
-        String input = "There before";
-        Pattern pattern = Pattern.compile("^The\\w*");
-        Matcher matcher = pattern.matcher(input);
+        input = "There before";
+        pattern = Pattern.compile("^The\\w*");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
         */
 
-        // Совпадения нулевой длины
-        /*
-        String input = "Java is";
-        Pattern pattern = Pattern.compile("\\b\\b");
-        Matcher matcher = pattern.matcher(input);
-
-        whileMatcherFind(input, matcher);
-        */
 
         // Квантификаторы
-
+        /*
         // использование жадного квантификатора:
-        String input = "fox box pox fax";
-        Pattern pattern = Pattern.compile(".*ox");
-        Matcher matcher = pattern.matcher(input);
+        input = "fox box pox fax";
+        pattern = Pattern.compile(".*ox");
+        matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
-        System.out.println("---------------------------------------------------");
 
         // использование ленивого квантификатора:
         input = "fox box pox fax";
@@ -162,7 +166,6 @@ public class RegularExpressionsDemo {
         matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
-        System.out.println("---------------------------------------------------");
 
         // использование сверхжадного квантификатора:
         input = "fox box pox fax ox";
@@ -170,9 +173,90 @@ public class RegularExpressionsDemo {
         matcher = pattern.matcher(input);
 
         whileMatcherFind(input, matcher);
+        */
+
+        // Совпадения нулевой длины
+        /*
+        input = "Java is";
+        pattern = Pattern.compile("\\b\\b");
+        matcher = pattern.matcher(input);
+
+        whileMatcherFind(input, matcher);
+
+        input = "abaa";
+        pattern = Pattern.compile("a?");
+        matcher = pattern.matcher(input);
+
+        whileMatcherFind(input, matcher);
+        */
 
 
+        // Вложенные флаговые выражения:
 
+        // (?i) активирует нечувствительный к регистру поиск по шаблону
+        input = "Treehouse";
+        pattern = Pattern.compile("(?i)tree");
+        matcher = pattern.matcher(input);
+
+        //  последовательность символов Tree соответствует шаблону tree
+        whileMatcherFind(input, matcher);
+
+
+        // (?x) разрешает использование внутри шаблона пробельных символов и комментариев,
+        // начинающихся с метасимвола #
+        input = "matter";
+        pattern = Pattern.compile(".at(?x)#match hat, cat, and so on");
+        matcher = pattern.matcher(input);
+
+        //  последовательность символов mat соответствует шаблону .at
+        whileMatcherFind(input, matcher);
+
+
+        // (?s): активирует режим dotall, в котором метасимвол точки соответствует разделителям строк,
+        // помимо любого другого символа
+        input = "\n";
+        pattern = Pattern.compile("(?s)");
+        matcher = pattern.matcher(input);
+
+        // найден символ новой строки
+        whileMatcherFind(input, matcher);
+
+        // при команде Java RegexDemo "." "\n" символ новой строки найден не будет
+        input = "\n";
+        pattern = Pattern.compile(".");
+        matcher = pattern.matcher(input);
+
+        // символ новой строки не найден
+        whileMatcherFind(input, matcher);
+
+
+        // (?m): активирует многострочный режим, при котором ^ соответствует началу, а $ – концу каждой строки
+        input = "abc\nabc";
+        pattern = Pattern.compile("(?m)^abc$");
+        matcher = pattern.matcher(input);
+
+        //  находит во входном тексте обе последовательности abc
+        whileMatcherFind(input, matcher);
+
+        // по умолчанию используется однострочный режим: ^ соответствует началу всего входного текста, а $ — его концу
+        input = "abc\nabc";
+        pattern = Pattern.compile("^abc$");
+        matcher = pattern.matcher(input);
+
+        // возвращает ответ об отсутствии совпадений
+        whileMatcherFind(input, matcher);
+
+
+        // (?u): активирует выравнивание регистра с учетом Unicode
+        input = "abCdeFG";
+        pattern = Pattern.compile("(?u)(?i)bcd");
+        matcher = pattern.matcher(input);
+
+        whileMatcherFind(input, matcher);
+
+
+        // (?d): активирует режим строк в стиле Unix, при котором сопоставитель распознает в контексте
+        // метасимволов ., ^ и $ только разделитель строк \n
 
     }
 
@@ -184,5 +268,6 @@ public class RegularExpressionsDemo {
             System.out.println("Found [" + input.substring(
                     start, end) + "] starting at " + start + " and ending at " + end);
         }
+        System.out.println("---------------------------------------------------");
     }
 }
